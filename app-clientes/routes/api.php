@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +16,8 @@ use App\Http\Controllers\ClienteController;
 */
 
 
-Route::get('/cliente', [ClienteController::class,"Listar"]);
-Route::get('/cliente/{d}', [ClienteController::class,"ListarUno"]);
-Route::post('/cliente', [ClienteController::class,"Agregar"]);
-Route::post('/modificar', [ClienteController::class,"Modificar"]);
-Route::post('/eliminar', [ClienteController::class,"Eliminar"]);
+Route::get('/usuario', [UsuarioController::class,"Listar"]);
+Route::get('/usuario/{d}', [UsuarioController::class,"ListarUno"]);
+Route::post('/usuario', [UsuarioController::class,"Agregar"]);
+Route::post('/modificar', [UsuarioController::class,"Modificar"]);
+Route::post('/eliminar', [UsuarioController::class,"Eliminar"]);

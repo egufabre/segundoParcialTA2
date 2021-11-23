@@ -22,9 +22,9 @@ Route::get('/newPost',function () {
 Route::get('/crearUsuario', function () {
     return view('crearUsuario');
 });
-Route::post('/crearUsuario','App\Http\Controllers\ClienteController@createUser');
+Route::post('/crearUsuario','App\Http\Controllers\UsuarioController@createUser');
 
-Route::get("/perfil/{d}",'App\Http\Controllers\ClienteController@showProfile');
+Route::get("/perfil/{d}",'App\Http\Controllers\UsuarioController@showProfile');
 Route::get('/editPost','App\Http\Controllers\PostController@editPostForm');
 Route::post('/editPost','App\Http\Controllers\PostController@editPost');
 
@@ -34,4 +34,4 @@ Route::post('/newPost','App\Http\Controllers\PostController@newPost');
 Route::get('/login', function () {
     return view('login');
 });
-Route::post('/login','App\Http\Controllers\ClienteController@autenticar');
+Route::post('/login','App\Http\Controllers\UsuarioController@autenticar');
