@@ -33,8 +33,19 @@ class VentaController extends Controller
 
         $respuesta = array(
             "resultado" => "OK",
-            "mensaje" => "Venta Modificada correctamente"
+            "mensaje" => "Compra Modificada correctamente"
         );
         return $respuesta;
     }
+
+    public function Eliminar(Request $request){
+        $v = Ventas::where('id',$request -> post('id')) ->first();
+        $v -> delete();
+
+        $respuesta = array(
+            "resultado" => "OK",
+            "mensaje" => "Compra Eliminada correctamente"
+        );
+        return $respuesta;
+    }  
 }
