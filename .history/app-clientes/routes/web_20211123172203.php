@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
+=======
 use App\Http\Controllers\PostController;
+>>>>>>> cliente
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +17,11 @@ use App\Http\Controllers\PostController;
 |
 */
 
+<<<<<<< HEAD
+Route::get('/', function () {
+    return view('welcome');
+});
+=======
 Route::get('/', 'App\Http\Controllers\PostController@Inicio');
 Route::get('/newPost',function () {
     return view('crearPost');
@@ -35,3 +43,4 @@ Route::get('/login', function () {
     return view('login');
 });
 Route::post('/login','App\Http\Controllers\UsuarioController@autenticar');
+>>>>>>> cliente
