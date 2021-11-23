@@ -9,9 +9,47 @@ use Illuminate\Support\Facades\Http;
 
 class VentaController extends Controller
 {
+    private function obtenerDatosUsuario($id_usuario){
+        $usuarios= Http::get(getenv("APP_CLIENTES_URL") . "usuario") -> json();
+        foreach($usuarios as $usuario){
+            if($id_usuario == $usuario['id']){
+                return array('nombre' =>$usuario['nombre'], 'apellido' => $usuario['apellido']);
+            }
+        }
+    }
+
+    private function obtenerDatosProducto($id_producto){
+        $productos = Http::get(getenv("APP_PRODUCTOS_URL") . "producto") -> json();
+        foreach($productos as $producto){
+            if($id_producto == $producto['id']){
+                return array('nombre' =>$producto['nombre'], 'stock' => $producto['stock']);
+            }
+        }
+    }
+
+    private function obtenerDatosDeVentas($ventas){
+        $ventasConDatosCompletos = [];
+        foreach($ventas as $v){
+            $datosUsuario = $this -> obtenerDatosUsuario($v ->id_usuario);
+            $datosProducto = $this -> obtenerDatosProducto($v ->id_producto);
+
+            $fila = [
+                'id' => $v->id,
+                'id_usuario' => $v->id_usuario,
+                'id_producto' => $v->id_producto,
+                'nombre_producto' =>$datosProducto['nombre'],
+                'stock' =>$datosProducto['stock'],
+                'nombre_usuario' =>$datosUsuario['nombre'],
+                'apellido_usuario' =>$datosUsuario['apellido'],
+
+            ];
+            array_push($ventasConDatosCompletos,$fila);
+        }
+        return $ventasConDatosCompletos;
+    }
     public function Listar(Request $request){
         $ventas = Ventas::all();
-        return $ventas;
+        return $this->obtenerDatosDeVentas($ventas);
     }
 
     public function ListarUno(Request $request, $idProducto){
