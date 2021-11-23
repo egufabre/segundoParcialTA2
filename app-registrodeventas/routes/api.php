@@ -17,4 +17,4 @@ use App\Http\Controllers\VentaController;
 */
 
 Route::post('/agregar', [VentaController::class,"Agregar"]);
-
+Route::post('/modificar', [VentaController::class,"Modificar"]);

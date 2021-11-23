@@ -23,4 +23,18 @@ class VentaController extends Controller
 
         return $respuesta;
     }
+    
+    public function Modificar(Request $request){
+        $v = Ventas::where('id',$request -> post('id')) ->first();
+        $v -> id_usuario = $request -> post('id_usuario');
+        $v -> id_producto = $request -> post('id_producto');
+
+        $v -> save();
+
+        $respuesta = array(
+            "resultado" => "OK",
+            "mensaje" => "Venta Modificada correctamente"
+        );
+        return $respuesta;
+    }
 }
