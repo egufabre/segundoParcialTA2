@@ -15,7 +15,8 @@ use App\Http\Controllers\VentaController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+Route::get('/listar', [VentaController::class,"Listar"]);
+Route::get('/listar/{d}', [VentaController::class,"ListarUno"]);
 Route::post('/agregar', [VentaController::class,"Agregar"]);
 Route::post('/modificar', [VentaController::class,"Modificar"]);
 Route::post('/eliminar', [VentaController::class,"Eliminar"]);

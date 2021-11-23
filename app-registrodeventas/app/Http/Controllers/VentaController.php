@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Http;
 
 class VentaController extends Controller
 {
+    public function Listar(Request $request){
+        $ventas = Ventas::all();
+        return $ventas;
+    }
+
+    public function ListarUno(Request $request, $idProducto){
+        $venta = Ventas::where('id',$idProducto) ->first();
+        return $venta;
+    }
     public function Agregar(Request $request){
         $v = new Ventas();
         $v -> id_usuario = $request -> post('id_usuario');
