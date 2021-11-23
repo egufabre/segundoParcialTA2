@@ -2,6 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
+=======
+use App\Http\Controllers\UsuarioController;
+>>>>>>> cliente
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +18,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+<<<<<<< HEAD
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+=======
+
+Route::get('/usuario', [UsuarioController::class,"Listar"]);
+Route::get('/usuario/{d}', [UsuarioController::class,"ListarUno"]);
+Route::post('/usuario', [UsuarioController::class,"Agregar"]);
+Route::post('/modificar', [UsuarioController::class,"Modificar"]);
+Route::post('/eliminar', [UsuarioController::class,"Eliminar"]);
+>>>>>>> cliente
