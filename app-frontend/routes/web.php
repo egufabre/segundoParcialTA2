@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\VentaController;
 
-
 Route::get('/Listar', [UsuarioController::class,"ListarUsuarios"]);
 Route::get('/Listar/{d}', [UsuarioController::class,"ListarUsuario"]);
 
@@ -46,6 +45,8 @@ Route::get('/listarVentas', [VentaController::class,"Listar"]);
 Route::get('/Listar/{d}', [VentaController::class,"ListarUno"]);
 
 Route::post('/agregarVenta', [VentaController::class,"Agregar"]);
+Route::post('/modificarVenta', [VentaController::class,"Modificar"]);
+Route::get('/modificarVenta', [VentaController::class,"ModificarForm"]);
 Route::get('/agregarVenta', function () {
     return view('formAgregarVenta');
 });

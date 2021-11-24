@@ -50,7 +50,6 @@ class Ventacontroller extends Controller
              return view('formAgregarVenta' , ["exitoModificar" => true]);
     }
     public function ModificarForm(Request $request){
-     $reserva = Http::get(getenv("APP_REGISTRO_URL") . "modificar")->json();
-     return view('formAgregarVenta',[ "reserva" => $reserva ]);
+     return view('formAgregarVenta',['ventas' => '']);
  }
 }
