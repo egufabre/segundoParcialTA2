@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UsuarioController;
@@ -22,5 +23,9 @@ Route::get('/eliminarUsuario', function () {
 });
 Route::post('/eliminarUsuario', [UsuarioController::class,"EliminarUsuario"]);
 
+route::get('/listarProductos', [ProductoController::class,"ListarProductos"]);
+Route::get('/agregarProductos', function () {
+    return view('formAgregarProducto');
+});
 
-
+Route::post('/agregarProducto', [ProductoController::class,"AgregarProducto"]);
