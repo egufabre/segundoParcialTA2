@@ -4,6 +4,7 @@ use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\VentaController;
 
 
 Route::get('/Listar', [UsuarioController::class,"ListarUsuarios"]);
@@ -40,3 +41,11 @@ Route::get('/eliminarProductos', function () {
     return view('formEliminarProducto');
 });
 Route::post('/eliminarProductos', [ProductoController::class,"EliminarProductos"]);
+
+Route::get('/listarVentas', [VentaController::class,"Listar"]);
+Route::get('/Listar/{d}', [VentaController::class,"ListarUno"]);
+
+Route::post('/agregarVenta', [VentaController::class,"Agregar"]);
+Route::get('/agregarVenta', function () {
+    return view('formAgregarVenta');
+});

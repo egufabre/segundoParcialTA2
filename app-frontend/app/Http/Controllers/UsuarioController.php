@@ -43,7 +43,6 @@ class UsuarioController extends Controller
     }
 
     public function ModificarUsuario(Request $request){
-<<<<<<< HEAD
         $datosUsuario = $this -> obtenerDatosUsuario($request -> post('id'));
         $tipo = null;
         if ($datosUsuario['tipo'] == 0){
@@ -53,9 +52,6 @@ class UsuarioController extends Controller
         }
 
         $response = Http::post(getenv("APP_clientes_URL") . "modificar", [
-=======
-        $response = Http::post(getenv("APP_USUARIOS_URL") . "usuario", [
->>>>>>> ab6b47a92c6ac955999955a9c42c5112474cc77e
             'id' => $request -> post('id'),
             'nombre' => $request -> post('nombre'),
             'apellido' => $request -> post('apellido'),
@@ -71,17 +67,10 @@ class UsuarioController extends Controller
         }
     }
 
-<<<<<<< HEAD
     public function EliminarUsuario(Request $request){
         $response = Http::post(getenv("APP_clientes_URL") . "eliminar", [
             'id' => $request -> post('id'),
         ]) -> json();
-=======
-        public function EliminarUsuario(Request $request){
-            $response = Http::post(getenv("APP_USUARIOS_URL") . "usuario", [
-                'id' => $request -> post('id')
-            ]) -> json();
->>>>>>> ab6b47a92c6ac955999955a9c42c5112474cc77e
 
         if($response["resultado"]=== "OK")
             return view('formEliminarUsuario',["exito" => true]);
