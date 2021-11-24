@@ -60,4 +60,16 @@ class ProductoController extends Controller
         );
         return $respuesta;
     }  
+
+    public function BajarStock(Request $request){
+        $p = Producto::where('id',$request -> post('id')) ->first();
+        $p -> stock = $p -> stock - $request -> post('stock');
+
+        $p -> save();
+
+        $respuesta = array(
+            "resultado" => "Stock actualizado",
+        );
+        return $respuesta;
+    }
 }
