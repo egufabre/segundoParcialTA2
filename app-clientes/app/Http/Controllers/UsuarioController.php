@@ -13,7 +13,7 @@ class UsuarioController extends Controller
         return $usuarios;
     }
 
-    public function ListarUno(Request $request, $idSocio){
+    public function ListarUno($idSocio){
         $usuario = Usuario::where('id',$idSocio) ->first();
         return $usuario;
     }

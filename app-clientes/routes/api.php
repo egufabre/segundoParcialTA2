@@ -18,7 +18,6 @@ use App\Http\Controllers\UsuarioController;
 
 Route::get('/usuario', [UsuarioController::class,"Listar"]);
 Route::get('/usuario/{d}', [UsuarioController::class,"ListarUno"]);
-Route::post('/usuario/{d}', [UsuarioController::class,"ListarUno"]);
 Route::post('/usuario', [UsuarioController::class,"Agregar"]);
 Route::post('/modificar', [UsuarioController::class,"Modificar"]);
 Route::post('/eliminar', [UsuarioController::class,"Eliminar"]);
