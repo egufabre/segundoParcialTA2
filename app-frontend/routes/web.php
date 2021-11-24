@@ -33,4 +33,4 @@ Route::post('/agregarProductos', [ProductoController::class,"AgregarProducto"]);
 Route::get('/eliminarProductos', function () {
     return view('formEliminarProducto');
 });
-Route::post('/eliminarProductos', [UsuarioController::class,"EliminarProductos"]);
+Route::post('/eliminarProductos', [ProductoController::class,"EliminarProductos"]);
