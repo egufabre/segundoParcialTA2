@@ -10,7 +10,7 @@
     <h1>Agregar usuario</h1>
 
     @isset($exito)
-        <div style="color: #00FF00">Usuario agregado correctamente</div>
+        <div style="color: #009900">Usuario agregado correctamente</div>
     @endisset
     <form action="/agregarUsuario" method="post">
         @csrf
