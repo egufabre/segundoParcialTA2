@@ -14,21 +14,6 @@ use Laravel\Passport\Passport;
 
 class UserController extends Controller
 {
-    public function Login(Request $request){
-        $credentials = $request->only('email', 'password');
-        if (Hash::check($credentials)) {
-            return response([
-                "message" => "Usuario Autenticado"
-            ]);
-        }
-        else{
-            return response([
-                'message' => "Email o contraseña invalidos"
-            ]);
-        }
-        
-
-    }
     public function crearUser(Request $request){
             $u = new User();
             $u -> name = $request -> post("name");
@@ -43,7 +28,7 @@ class UserController extends Controller
     
             return $respuesta;
      }
-     public function Logout(Request $request) {
+     public function Login(Request $request) {
 
         $request->validate([
             'email' => ['required', 'email'], 
@@ -60,6 +45,16 @@ class UserController extends Controller
         }
         $user->createToken('Auth Token')->accessToken;
         return $user;
+    }
+    public function autenticar(Request $request){
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            return view ('login', ['autenticado' => "true"]);
+        }
+        else{
+            return view('login',['error' => "true"]);
+        }
     }
 
 }
