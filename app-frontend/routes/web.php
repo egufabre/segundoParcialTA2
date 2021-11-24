@@ -28,9 +28,9 @@ Route::get('/agregarProductos', function () {
     return view('formAgregarProducto');
 });
 
-Route::post('/agregarProductos', [ProductoController::class,"AgregarProducto"]);
+Route::post('/agregarProductos', [ProductoController::class,"AgregarProductos"]);
 
 Route::get('/eliminarProductos', function () {
     return view('formEliminarProducto');
 });
-Route::post('/eliminarProductos', [ProductoController::class,"EliminarProducto"]);
+Route::post('/eliminarProductos', [UsuarioController::class,"EliminarProductos"]);

@@ -8,33 +8,17 @@ use Illuminate\Support\Facades\Http;
 class UsuarioController extends Controller
 {
     public function ListarUsuarios(Request $request){
-        $u = Http::get(getenv("APP_clientes_URL") . "usuario") -> json();
-        return view('listarUsuarios',["usuarios" => $u]);
+        $clientes = Http::get(getenv("APP_USUARIOS_URL") . "usuario") -> json();
+        return view('listarUsuarios',["clientes" => $clientes]);
     }
 
     public function AgregarUsuario(Request $request){
-        $response = Http::post(getenv("APP_clientes_URL") . "usuario", [
+        $response = Http::post(getenv("APP_USUARIOS_URL") . "usuario", [
             'nombre' => $request -> post('nombre'),
             'apellido' => $request -> post('apellido'),
             'telefono' => $request -> post('telefono'),
-            'correo' => $request -> post('correo'),
-            'tipo' => 0
-        ]) -> json();
-
-        if($response["resultado"]=== "OK")
-        return view('formAgregarUsuario',["exito" => true]);
-        else {
-            return "ERROR";
-        }
-    }
-
-    public function AgregarVendedor(Request $request){
-        $response = Http::post(getenv("APP_clientes_URL") . "usuario", [
-            'nombre' => $request -> post('nombre'),
-            'apellido' => $request -> post('apellido'),
-            'telefono' => $request -> post('telefono'),
-            'correo' => $request -> post('correo'),
-            'tipo' => 1
+            'correo' => $request -> post('correo')
+            #'tipo' => 1
         ]) -> json();
 
         if($response["resultado"]=== "OK")
@@ -45,7 +29,7 @@ class UsuarioController extends Controller
     }
 
     public function ModificarUsuario(Request $request){
-        $response = Http::post(getenv("APP_clientes_URL") . "usuario", [
+        $response = Http::post(getenv("APP_USUARIOS_URL") . "usuario", [
             'id' => $request -> post('id'),
             'nombre' => $request -> post('nombre'),
             'apellido' => $request -> post('apellido'),
@@ -58,8 +42,8 @@ class UsuarioController extends Controller
         }
 
         public function EliminarUsuario(Request $request){
-            $response = Http::post(getenv("APP_clientes_URL") . "usuario", [
-                'id' => $request -> post('id'),
+            $response = Http::post(getenv("APP_USUARIOS_URL") . "usuario", [
+                'id' => $request -> post('id')
             ]) -> json();
 
             if($response["resultado"]=== "OK")
