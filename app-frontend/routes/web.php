@@ -7,11 +7,17 @@ use App\Http\Controllers\UsuarioController;
 
 
 Route::get('/Listar', [UsuarioController::class,"ListarUsuarios"]);
+Route::get('/Listar/{d}', [UsuarioController::class,"ListarUsuario"]);
 
-Route::get('/agregarUsuario', function () {
+Route::get('/agregarCliente', function () {
     return view('formAgregarUsuario');
 });
-Route::post('/agregarUsuario', [UsuarioController::class,"AgregarUsuario"]);
+Route::post('/agregarCliente', [UsuarioController::class,"AgregarUsuario"]);
+
+Route::get('/agregarVendedor', function () {
+    return view('formAgregarUsuario');
+});
+Route::post('/agregarVendedor', [UsuarioController::class,"AgregarVendedor"]);
 
 Route::get('/modificarUsuario', function () {
     return view('formModificarUsuario');
