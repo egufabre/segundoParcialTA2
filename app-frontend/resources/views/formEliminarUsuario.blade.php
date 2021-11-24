@@ -10,7 +10,7 @@
     <h1>Eliminar usuario</h1>
 
     @isset($exito)
-        <div style="color: #009900">Usuario Eliminado correctamente</div>
+        <div style="color: #00FF00">Usuario Eliminado correctamente</div>
     @endisset
     <form action="/eliminarUsuario" method="post">
         @csrf
