@@ -12,7 +12,7 @@
     @isset($exito)
         <div style="color: #000000">Producto Agregado correctamente</div>
     @endisset
-    <form action="/agregarProducto" method="post">
+    <form action="/agregarProductos" method="post">
         @csrf
         Nombre: <input type="text" name="nombre"><br />
         Descripcion: <input type="text" name="descripcion"><br />
