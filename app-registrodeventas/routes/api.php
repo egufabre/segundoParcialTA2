@@ -18,5 +18,5 @@ use App\Http\Controllers\VentaController;
 Route::get('/listar', [VentaController::class,"listar"]);
 Route::get('/listar/{d}', [VentaController::class,"ListarUno"]);
 Route::post('/agregar', [VentaController::class,"Agregar"]);
-Route::post('/modificar', [VentaController::class,"Modificar"]);
+Route::put('/modificar', [VentaController::class,"Modificar"]);
 Route::post('/eliminar', [VentaController::class,"Eliminar"]);
