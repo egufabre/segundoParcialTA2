@@ -2,8 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\VentaController;
-
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +14,14 @@ use App\Http\Controllers\VentaController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/listar', [VentaController::class,"listar"]);
-Route::get('/listar/{d}', [VentaController::class,"ListarUno"]);
-Route::post('/agregar', [VentaController::class,"Agregar"]);
-Route::put('/modificar', [VentaController::class,"Modificar"]);
-Route::post('/eliminar', [VentaController::class,"Eliminar"]);
+
+//Route::middleware('auth:passport')->get('/user', function (Request $request) {
+ //   return $request->user();
+//});
+
+Route::post('/registro', [UserController::class,'registro']);
+Route::post('/login', [UserController::class,'Login']);
+Route::post('/crearUsuario', [UserController::class,'crearUser']);
+
+
+

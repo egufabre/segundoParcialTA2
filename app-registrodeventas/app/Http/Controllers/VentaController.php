@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Ventas;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class VentaController extends Controller
@@ -27,6 +29,7 @@ class VentaController extends Controller
         }
     }
 
+
     private function obtenerDatosDeVentas($ventas){
         $ventasConDatosCompletos = [];
         foreach($ventas as $v){
@@ -39,8 +42,8 @@ class VentaController extends Controller
                 'id_producto' => $v->id_producto,
                 'nombre_producto' =>$datosProducto['nombre'],
                 'stock' =>$datosProducto['stock'],
-                'nombre_usuario' =>$datosUsuario['nombre'],
-                'apellido_usuario' =>$datosUsuario['apellido'],
+                'nombre' =>$datosUsuario['nombre'],
+                'apellido' =>$datosUsuario['apellido'],
 
             ];
             array_push($ventasConDatosCompletos,$fila);
