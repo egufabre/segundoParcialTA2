@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
 class UsuarioController extends Controller
 {
     public function ListarUsuarios(Request $request){
-        $clientes = Http::get(getenv("APP_USUARIOS_URL") . "usuario") -> json();
+        $clientes = Http::get(getenv("APP_CLIENTES_URL") . "usuario") -> json();
         return view('listarUsuarios',["clientes" => $clientes]);
     }
 
@@ -27,7 +27,7 @@ class UsuarioController extends Controller
     }
 
     public function AgregarUsuario(Request $request){
-        $response = Http::post(getenv("APP_USUARIOS_URL") . "usuario", [
+        $response = Http::post(getenv("APP_CLIENTES_URL") . "usuario", [
             'nombre' => $request -> post('nombre'),
             'apellido' => $request -> post('apellido'),
             'telefono' => $request -> post('telefono'),

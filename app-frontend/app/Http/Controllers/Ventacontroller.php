@@ -21,8 +21,8 @@ class Ventacontroller extends Controller
      }
  }
     public function ListarUno(Request $request ){
-     $registro = Http::get(getenv('APP_REGISTRO_URL') . "reserva")->json();
-     return View('listarVentas',["registro" => $registro]);
+     $registro = Http::get(getenv('APP_REGISTRO_URL') . "listar")->json();
+     return View('listarVenta',["registro" => $registro]);
  
  }
  
@@ -52,4 +52,15 @@ class Ventacontroller extends Controller
     public function ModificarForm(Request $request){
      return view('formAgregarVenta',['ventas' => '']);
  }
+    public function Eliminar(Request $request){
+          $response = Http::post(getenv("APP_REGISTRO_URL") . "eliminar", [
+          'id' => $request -> post('id'),
+         ]) -> json();
+
+          if($response["resultado"]=== "OK")
+            return view('formEliminarVenta',["exito" => true]);
+          else {
+            return "ERROR";
+    }
+}
 }
