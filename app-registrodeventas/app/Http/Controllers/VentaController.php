@@ -66,7 +66,7 @@ class VentaController extends Controller
         $v -> stock = $request -> post('stock');
 
         $v -> save();
-        
+
         $respuesta = array(
             "resultado" => "OK",
             "mensaje" => "Compra Realizada correctamente"
@@ -74,13 +74,13 @@ class VentaController extends Controller
 
         return $this->BajarStock($request);
     }
-    
+
     public function Modificar(Request $request){
         $v = Ventas::where('id',$request -> post('id')) ->first();
         $v -> id_usuario = $request -> post('id_usuario');
         $v -> id_producto = $request -> post('id_producto');
         $v -> stock = $request -> post('stock');
-        
+
 
         $v -> save();
 
@@ -100,15 +100,15 @@ class VentaController extends Controller
             "mensaje" => "Compra Eliminada correctamente"
         );
         return $respuesta;
-    }  
+    }
     public function BajarStock(Request $request){
-        $v = Http::post(getenv("APP_PRODUCTOS_URL") . "stock") -> json();
-        $v -> id_producto = $request -> post('id_producto');
-        $v -> stock = $request -> post('stock');
-        $v -> save();
-
+        $response = Http::put(getenv("APP_productos_URL") . "stock", [
+            'id' => $request -> post('id'),
+            'stock' => $request -> post('stock'),
+        ]) -> json();
         $respuesta = array(
-            "resultado" => "Compra realizada!",
+            "resultado" => "OK",
+            "mensaje" => "Venta Agregada correctamente"
         );
         return $respuesta;
     }

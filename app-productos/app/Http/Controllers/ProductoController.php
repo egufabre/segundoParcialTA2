@@ -7,7 +7,7 @@ use App\Models\producto;
 
 class ProductoController extends Controller
 {
-    
+
     public function Listar(Request $request){
         $productos = Producto::all();
         return $productos;
@@ -17,7 +17,7 @@ class ProductoController extends Controller
         $producto = Producto::where('id',$idProducto) ->first();
         return $producto;
     }
-    
+
     public function Agregar(Request $request){
         $p = new Producto();
         $p -> nombre = $request -> post('nombre');
@@ -59,7 +59,7 @@ class ProductoController extends Controller
             "mensaje" => "Producto Eliminado correctamente"
         );
         return $respuesta;
-    }  
+    }
 
     public function BajarStock(Request $request){
         $p = Producto::where('id',$request -> post('id')) ->first();
