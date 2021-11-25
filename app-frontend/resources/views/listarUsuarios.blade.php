@@ -10,7 +10,7 @@
     <h1>Usuarios</h1>
 
 
-    @foreach($Usuarios as $u)
+    @foreach($usuarios as $u)
         ID: {{ $u["id"] }} <br />
         Nombre: {{ $u["nombre"] }} <br />
         Apellido: {{ $u["apellido"] }} <br />
