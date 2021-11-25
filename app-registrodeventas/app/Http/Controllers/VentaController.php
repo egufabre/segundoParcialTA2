@@ -29,7 +29,6 @@ class VentaController extends Controller
         }
     }
 
-
     private function obtenerDatosDeVentas($ventas){
         $ventasConDatosCompletos = [];
         foreach($ventas as $v){
@@ -102,8 +101,8 @@ class VentaController extends Controller
         return $respuesta;
     }
     public function BajarStock(Request $request){
-        $response = Http::put(getenv("APP_productos_URL") . "stock", [
-            'id' => $request -> post('id'),
+        $response = Http::put(getenv("APP_PRODUCTOS_URL") . "stock", [
+            'id' => $request -> post('id_producto'),
             'stock' => $request -> post('stock'),
         ]) -> json();
         $respuesta = array(
