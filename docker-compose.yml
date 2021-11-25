@@ -33,6 +33,13 @@ services:
     volumes:
       - ./app-clientes/mysql:/var/lib/mysql
 
+  mariadb-autenticacion:
+    image: docker.io/bitnami/mariadb:10.2
+    environment:
+      - MARIADB_DATABASE=autenticacion
+      - MARIADB_ROOT_PASSWORD=password
+    volumes:
+      - ./app-clientes/mysql:/var/lib/mysql
 
   app-productos:
     tty: true
@@ -84,7 +91,6 @@ services:
     volumes:
       - ./app-clientes:/app
 
-
   app-frontend:
     tty: true
     restart: unless-stopped
@@ -101,3 +107,20 @@ services:
       - 3003:3000
     volumes:
       - ./app-frontend:/app
+
+  app-autenticacion:
+    tty: true
+    restart: unless-stopped
+    image: docker.io/bitnami/laravel:8
+    environment:
+      - DB_HOST=mariadb-autenticacion
+      - DB_USERNAME=root
+      - DB_DATABASE=autenticacion
+      - DB_PASSWORD=password
+      - APP_productos_URL=http://app-productos:3000/api/
+      - APP_clientes_URL=http://app-clientes:3000/api/
+      - APP_registrodeventas_URL=http://app-registrodeventas:3000/api/
+    ports:
+      - 3004:3000
+    volumes:
+      - ./app-autenticacion:/app

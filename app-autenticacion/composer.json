@@ -12,7 +12,7 @@
         "laravel/passport": "^10.2",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "paragonie/random_compat": "2.*" 
+        "paragonie/random_compat": "2.*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
