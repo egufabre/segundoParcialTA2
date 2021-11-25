@@ -29,8 +29,23 @@ class ProductoController extends Controller
 
     }
 
+    public function ModificarProducto(Request $request){
+        $response = Http::put(getenv("APP_productos_URL") . "producto", [
+            'id' => $request -> post('id'),
+            'nombre' => $request -> post('nombre'),
+            'descripcion' => $request -> post('descripcion'),
+            'stock' => $request -> post('stock'),
+        ]) -> json();
+        if($response["resultado"] === "OK")
+        return view('formModificarProducto',["exito" => true]);
+        else {
+            return "ERROR";
+        }
+
+    }
+
     public function EliminarProducto(Request $request){
-        $response = Http::post(getenv("APP_PRODUCTOS_URL") . "producto", [
+        $response = Http::delete(getenv("APP_PRODUCTOS_URL") . "producto", [
             'id' => $request -> post('id'),
         ]) -> json();
 

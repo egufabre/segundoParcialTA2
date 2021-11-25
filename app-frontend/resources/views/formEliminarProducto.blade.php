@@ -12,11 +12,9 @@
     @isset($exito)
         <div style="color: #000000">Producto Eliminado correctamente</div>
     @endisset
-    <form action="/eliminarProducto" method="post">
+    <form action="/eliminarProductos" method="post">
         @csrf
-        Nombre: <input type="text" name="nombre"><br />
-        Descripcion: <input type="text" name="descripcion"><br />
-        Stock: <input type="text" name="stock"><br />
+        Id: <input type="text" name="id"><br />
         <input type="submit" value="Enviar">
     </form>
 </body>
