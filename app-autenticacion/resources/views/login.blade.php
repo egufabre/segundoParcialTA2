@@ -18,11 +18,11 @@
         Usted se autentico correctamente.
     </div>
     @endisset
-    
-    <form action="/login" method="post">
-    @csrf 
 
-    Email <input type="text" name="email"> <br> 
+    <form action="/login" method="post">
+    @csrf
+
+    Email <input type="text" name="email"> <br>
     Password <input type="password" name="password">
     <br>
     <input type="submit" value="Enviar">
