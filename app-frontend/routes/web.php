@@ -35,7 +35,7 @@ Route::get('/agregarProductos', function () {
 });
 
 Route::post('/agregarProductos', [ProductoController::class,"AgregarProducto"]);
-
+Route::post('/modificarProductos', [ProductoController::class,"ModificarProducto"]);
 Route::get('/eliminarProductos', function () {
     return view('formEliminarProducto');
 });

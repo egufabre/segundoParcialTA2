@@ -17,6 +17,7 @@
     @endisset
 
     @isset($ventas)
+    
     <form action="/modificarVenta" method="post">
         ID: <input type="text" name="id"><br />
         Id_Usuario: <input type="text" name="id_usuario"><br />
