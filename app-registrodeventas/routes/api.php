@@ -15,9 +15,8 @@ use App\Http\Controllers\VentaController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/listar', [VentaController::class,"listar"]);
-Route::get('/listarStock', [VentaController::class,"obtenerStock"]);
-Route::get('/listar/{d}', [VentaController::class,"ListarUno"]);
-Route::post('/agregar', [VentaController::class,"Agregar"]);
-Route::post('/modificar', [VentaController::class,"Modificar"]);
-Route::post('/eliminar', [VentaController::class,"Eliminar"]);
+Route::get('/venta', [VentaController::class,"listar"]);
+Route::get('/venta/{d}', [VentaController::class,"ListarUno"]);
+Route::post('/venta', [VentaController::class,"Agregar"]);
+Route::put('/venta', [VentaController::class,"Modificar"]);
+Route::delete('/venta', [VentaController::class,"Eliminar"]);

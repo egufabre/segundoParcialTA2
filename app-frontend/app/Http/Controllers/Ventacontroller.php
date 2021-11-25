@@ -21,13 +21,13 @@ class Ventacontroller extends Controller
      }
  }
     public function ListarUno(Request $request ){
-     $registro = Http::get(getenv('APP_REGISTRO_URL') . "listar")->json();
+     $registro = Http::get(getenv('APP_REGISTRO_URL') . "venta")->json();
      return View('listarVenta',["registro" => $registro]);
  
  }
  
     public function Agregar(Request $request){
-        $response = Http::post(getenv('APP_REGISTRO_URL') . "agregar" , [
+        $response = Http::post(getenv('APP_REGISTRO_URL') . "venta" , [
          'id_producto' => $request->post('id_producto'),
          'id_usuario' => $request->post('id_usuario')
         ])-> json(); 
@@ -40,7 +40,7 @@ class Ventacontroller extends Controller
     }
  
     public function Modificar(Request $request){
-         $response = Http::post(getenv('APP_REGISTRO_URL') . "modificar" , [
+         $response = Http::post(getenv('APP_REGISTRO_URL') . "venta" , [
              'id' => $request->post('id'),
              'id_usuario' => $request->post('id_usuario'),
              'id_producto' => $request->post('id_producto')

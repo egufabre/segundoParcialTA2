@@ -17,6 +17,7 @@ class CreateVentasTable extends Migration
             $table->id();
             $table->string("id_producto");
             $table->string("id_usuario");
+            $table->integer("stock");
             $table->timestamps();
             $table->softDeletes();
         });
