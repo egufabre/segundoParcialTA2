@@ -11,4 +11,4 @@ Route::post('/producto', [ProductoController::class,"Agregar"]);
 Route::put('/producto', [ProductoController::class,"Modificar"]);
 Route::delete('/producto', [ProductoController::class,"Eliminar"]);
 Route::get('/stock/{d}', [ProductoController::class,"obtenerStock"]); 
-Route::post('/stock', [ProductoController::class,"BajarStock"]);
+Route::put('/stock', [ProductoController::class,"BajarStock"]);

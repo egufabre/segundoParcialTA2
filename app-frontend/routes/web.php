@@ -31,7 +31,7 @@ Route::post('/eliminarUsuario', [UsuarioController::class,"EliminarUsuario"]);
 
 //PRODUCTOS
 
-route::get('/listarProductos', [ProductoController::class,"ListarProductos"]);
+Route::get('/listarProductos', [ProductoController::class,"ListarProductos"]);
 Route::get('/agregarProductos', function () {
     return view('formAgregarProducto');
 });
