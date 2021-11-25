@@ -6,16 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\VentaController;
 
-<<<<<<< HEAD
 Route::get('/listarUsuarios', [UsuarioController::class,"ListarUsuarios"]);
 Route::get('/listarUsuarios/{d}', [UsuarioController::class,"ListarUsuario"]);
-=======
-
-//USUARIOS
-
-Route::get('/Listar', [UsuarioController::class,"ListarUsuarios"]);
-Route::get('/Listar/{d}', [UsuarioController::class,"ListarUsuario"]);
->>>>>>> 6228a41a4000d9cba909c9177476d5524a5ee024
 
 Route::get('/agregarCliente', function () {
     return view('formAgregarUsuario');
