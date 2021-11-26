@@ -14,18 +14,15 @@ use Laravel\Passport\Passport;
 
 class UserController extends Controller
 {
-    public function crearUser(Request $request){
-        $u = new User();
-        $u -> name = $request -> post("name");
-        $u -> email = $request -> post("email");
-        $u -> password = Hash::make($request -> post("password"));
-        $u -> save();
+    public function eliminar(Request $request){
+        $u = user::where('email',$request -> post('email')) ->first();
+        $u -> delete();
 
         $respuesta = array(
             "resultado" => "OK",
-            "mensaje" => "Usuario Agregado correctamente"
+            "mensaje" => "Usuario Eliminado correctamente"
         );
-            return $respuesta;
+        return $respuesta;
     }
 
     public function registro(Request $request)

@@ -43,7 +43,7 @@ class UsuarioController extends Controller
             'correo' => $request -> post('correo'),
             'tipo' => $tipo
         ]) -> json();
-        if($response["resultado"]=== "OK")
+        if(isset($response["resultado"]))
             return true;
         else {
             return "";
@@ -87,6 +87,18 @@ class UsuarioController extends Controller
         }
     }
 
+    public function EliminarUsuarioAutenticacion(Request $request){
+        $response = Http::delete(getenv("APP_AUTENTICACION_URL") . "eliminar", [
+            'email' => $request -> post('correo'),
+        ]) -> json();
+
+        if($response["resultado"]=== "OK")
+            return true;
+        else {
+            return "ERROR";
+        }
+    }
+
     public function Registro(Request $request){
         $response = http::post(getenv("APP_AUTENTICACION_URL") . "registro", [
             'name' => $request -> post('nombreUsuario'),
@@ -95,10 +107,12 @@ class UsuarioController extends Controller
         ]) -> json();
         if(isset($response["resultado"])){
             $cliente = $this -> AgregarUsuario($request, 0);
-            return view('formAgregarUsuario',["exito" => $cliente]);
-        }else {
-            return "ERROR";
+            if (isset($cliente)){
+                return redirect('/login');
+            }
         }
+        $eliminar = $this -> EliminarUsuarioAutenticacion($request);
+        return view('formAgregarUsuario', ["exito" => false]);
     }
 
     public function RegistroVendor(Request $request){
@@ -109,9 +123,11 @@ class UsuarioController extends Controller
         ]) -> json();
         if(isset($response["resultado"])){
             $vendedor = $this -> AgregarUsuario($request, 1);
-            return view('formAgregarVendedor',["exito" => $vendedor]);
-        }else {
-            return "ERROR";
+            if (isset($vendedor)){
+                return redirect('/login');
+            }
+            $eliminar = $this -> EliminarUsuarioAutenticacion($request);
+            return view('formAgregarVendedor', ["exito" => false]);
         }
     }
 

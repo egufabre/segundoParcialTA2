@@ -23,6 +23,7 @@ Route::get('users', function(){
     return User::all();
 });
 Route::group(['namespace'=>'Api\Auth'], function(){
+Route::delete('/eliminar', [UserController::class, 'eliminar']);
 Route::post('/registro', [UserController::class,'registro']);
 Route::post('/logout', [UserController::class,'logout'])->middleware('auth:api');;
 Route::post('/login', [UserController::class,'login']);

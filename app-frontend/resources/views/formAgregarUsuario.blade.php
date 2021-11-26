@@ -7,13 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Agregar usuario</h1>
+    <h1>Agregar Cliente</h1>
 
     @isset($exito)
-        <div style="color: #000000">Usuario agregado correctamente</div>
-        <a href="/login">Ir al Login</a>
+        <div style="color: #000000">Error al intentar registrar el Cliente</div>
     @endisset
-        <form action="/registro" method="post">
+
+    <form action="/registro" method="post">
         @csrf
         Nombre de Usuario: <input type="text" name="nombreUsuario"><br />
         Correo: <input type="email" name="correo"><br />
