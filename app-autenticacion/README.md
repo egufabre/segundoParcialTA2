@@ -15,6 +15,7 @@ class User extends Authenticatable
 EN App\Providers\AuthServiceProvider
 
 AGREGAR: Passport::routes();
+
 public function boot()
     {
         $this->registerPolicies();
