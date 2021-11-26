@@ -1,9 +1,13 @@
 PARA PASSPORT
+
 composer require laravel/passport
+
 php artisan migrate
+
 php artisan passport:install
 
 EN App\Models\NombreModelo
+
 AGREGAR: HasApiTokens
 
 use Laravel\Passport\HasApiTokens;
@@ -42,6 +46,8 @@ CAMBIAR: token por passport
 En .ENV colocar 
 
 PASSPORT_PERSONAL_ACCESS_CLIENT_ID=
+
 PASSPORT_PERSONAL_ACCESS_CLIENT_SECRET=
+
 Con los campos que te da corriendo: php artisan passport:client
 
