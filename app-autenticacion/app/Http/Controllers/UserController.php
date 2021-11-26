@@ -36,7 +36,7 @@ class UserController extends Controller
             'password' => 'required|min:6',
         ]);
 
- 
+
 
         $user = User::create([
             'name' => $request->name,
@@ -46,9 +46,14 @@ class UserController extends Controller
 
         $token = $user->createToken('AuthToken')->accessToken;
 
-        return response()->json(['token' => $token], 200);
+        $respuesta = array(
+            "resultado" => "OK",
+            "token" => $token
+        );
+        return $respuesta;
 
     }
+
     public function login(Request $request)
     {
         $this->validate($request, [
@@ -59,7 +64,7 @@ class UserController extends Controller
         $login = $request->only('email', 'password');
 
         if (!Auth::attempt($login)) {
-            return response(['message' => 'Invalid login credential!!'], 401);
+            return response(['message' => 'Invalid login credential !!'], 401);
         }
         /**
          * @var User $user
@@ -68,6 +73,7 @@ class UserController extends Controller
         $token = $user->createToken($user->name);
 
         return response([
+            'resultado' => "OK",
             'id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,

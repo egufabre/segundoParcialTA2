@@ -100,6 +100,7 @@ services:
       - DB_USERNAME=root
       - DB_DATABASE=frontend
       - DB_PASSWORD=password
+      - APP_AUTENTICACION_URL=http://app-autenticacion:3000/api/
       - APP_productos_URL=http://app-productos:3000/api/
       - APP_clientes_URL=http://app-clientes:3000/api/
       - APP_registrodeventas_URL=http://app-registrodeventas:3000/api/
@@ -117,9 +118,8 @@ services:
       - DB_USERNAME=root
       - DB_DATABASE=autenticacion
       - DB_PASSWORD=password
-      - APP_productos_URL=http://app-productos:3000/api/
-      - APP_clientes_URL=http://app-clientes:3000/api/
-      - APP_registrodeventas_URL=http://app-registrodeventas:3000/api/
+    depends_on:
+      - mariadb-autenticacion
     ports:
       - 3004:3000
     volumes:

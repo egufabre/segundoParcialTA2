@@ -9,15 +9,24 @@ use App\Http\Controllers\VentaController;
 Route::get('/listarUsuarios', [UsuarioController::class,"ListarUsuarios"]);
 Route::get('/listarUsuarios/{d}', [UsuarioController::class,"ListarUsuario"]);
 
-Route::get('/agregarCliente', function () {
+Route::get('/registro', function () {
     return view('formAgregarUsuario');
 });
-Route::post('/agregarCliente', [UsuarioController::class,"AgregarCliente"]);
+Route::post('/registro', [UsuarioController::class,"Registro"]);
 
-Route::get('/agregarVendedor', function () {
+Route::get('/vendor/registro', function () {
     return view('formAgregarVendedor');
 });
-Route::post('/agregarVendedor', [UsuarioController::class,"AgregarVendedor"]);
+Route::post('/vendor/registro', [UsuarioController::class,"RegistroVendor"]);
+
+Route::get('/login', function () {
+    return view('formLoguearse');
+});
+Route::post('/login', [UsuarioController::class,"Loguearse"]);
+
+Route::get('/logout', function () {
+    return view('formLoguearse');
+});
 
 Route::get('/modificarUsuario', function () {
     return view('formModificarUsuario');

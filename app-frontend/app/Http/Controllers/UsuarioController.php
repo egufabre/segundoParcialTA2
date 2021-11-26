@@ -26,33 +26,27 @@ class UsuarioController extends Controller
         }
     }
 
-    public function AgregarCliente(Request $request){
-        $response = Http::post(getenv("APP_clientes_URL") . "usuario", [
-            'nombre' => $request -> post('nombre'),
-            'apellido' => $request -> post('apellido'),
-            'telefono' => $request -> post('telefono'),
-            'correo' => $request -> post('correo'),
-            'tipo' => 0
-        ]) -> json();
-        if($response["resultado"]=== "OK")
-        return view('formAgregarUsuario',["exito" => true]);
-        else {
-            return "ERROR";
+    private function obtenerDatosUsuarioPorCorreo($correo){
+        $usuario = Http::get(getenv("APP_clientes_URL") . "usuario") -> json();
+        foreach($usuario as $u){
+            if($correo == $u['correo']){
+                return array('nombre' => $u['nombre'], 'apellido' => $u['apellido'], 'telefono' => $u['telefono'], 'correo' => $u['correo'], 'tipo' => $u['tipo']);
+            }
         }
     }
 
-    public function AgregarVendedor(Request $request){
+    public function AgregarUsuario(Request $request, $tipo){
         $response = Http::post(getenv("APP_clientes_URL") . "usuario", [
             'nombre' => $request -> post('nombre'),
             'apellido' => $request -> post('apellido'),
             'telefono' => $request -> post('telefono'),
             'correo' => $request -> post('correo'),
-            'tipo' => 1
+            'tipo' => $tipo
         ]) -> json();
         if($response["resultado"]=== "OK")
-        return view('formAgregarUsuario',["exito" => true]);
+            return true;
         else {
-            return "ERROR";
+            return "";
         }
     }
 
@@ -91,5 +85,53 @@ class UsuarioController extends Controller
         else {
             return "ERROR";
         }
+    }
+
+    public function Registro(Request $request){
+        $response = http::post(getenv("APP_AUTENTICACION_URL") . "registro", [
+            'name' => $request -> post('nombreUsuario'),
+            'email' => $request -> post('correo'),
+            'password' => $request -> post('password'),
+        ]) -> json();
+        if(isset($response["resultado"])){
+            $cliente = $this -> AgregarUsuario($request, 0);
+            return view('formAgregarUsuario',["exito" => $cliente]);
+        }else {
+            return "ERROR";
+        }
+    }
+
+    public function RegistroVendor(Request $request){
+        $response = http::post(getenv("APP_AUTENTICACION_URL") . "registro", [
+            'name' => $request -> post('nombreUsuario'),
+            'email' => $request -> post('correo'),
+            'password' => $request -> post('password'),
+        ]) -> json();
+        if(isset($response["resultado"])){
+            $vendedor = $this -> AgregarUsuario($request, 1);
+            return view('formAgregarVendedor',["exito" => $vendedor]);
+        }else {
+            return "ERROR";
+        }
+    }
+
+    public function Loguearse(Request $request){
+        $response = http::post(getenv("APP_AUTENTICACION_URL") . "login", [
+            'email' => $request -> post('email'),
+            'password' => $request -> post('password'),
+        ]) -> json();
+        if(isset($response["message"])){
+            return $response["message"];
+        }else {
+            return $this -> Logueo($request);
+        }
+    }
+
+    public function Logueo(Request $request){
+        $datos = $this -> obtenerDatosUsuarioPorCorreo($request -> post('email'));
+        return $datos;
+        if ($datos['tipo'] == 1)
+            return "vendedor";
+        return "cliente";
     }
 }

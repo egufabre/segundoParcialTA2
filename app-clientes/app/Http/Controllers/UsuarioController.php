@@ -18,6 +18,11 @@ class UsuarioController extends Controller
         return $usuario;
     }
 
+    public function ListarUnoPorEmail($correo){
+        $usuario = Usuario::where('correo',$correo) ->first();
+        return $usuario;
+    }
+
     public function Agregar(Request $request){
         $u = new Usuario();
         $u -> nombre = $request -> post('nombre');

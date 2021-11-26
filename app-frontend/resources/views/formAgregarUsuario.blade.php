@@ -10,15 +10,18 @@
     <h1>Agregar usuario</h1>
 
     @isset($exito)
-        <div style="color: #00FF00">Usuario agregado correctamente</div>
+        <div style="color: #000000">Usuario agregado correctamente</div>
+        <a href="/login">Ir al Login</a>
     @endisset
-    <form action="/agregarCliente" method="post">
+        <form action="/registro" method="post">
         @csrf
+        Nombre de Usuario: <input type="text" name="nombreUsuario"><br />
+        Correo: <input type="email" name="correo"><br />
+        Password: <input type="password" name="password"><br />
         Nombre: <input type="text" name="nombre"><br />
         Apellido: <input type="text" name="apellido"><br />
         Telefono: <input type="text" name="telefono"><br />
-        Correo: <input type="text" name="correo"><br />
         <input type="submit" value="Enviar">
     </form>
-</body>
+    </body>
 </html>
