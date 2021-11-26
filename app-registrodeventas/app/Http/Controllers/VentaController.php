@@ -28,7 +28,7 @@ class VentaController extends Controller
             }
         }
     }
-
+    
     private function obtenerDatosDeVentas($ventas){
         $ventasConDatosCompletos = [];
         foreach($ventas as $v){

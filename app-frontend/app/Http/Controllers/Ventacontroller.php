@@ -29,7 +29,8 @@ class Ventacontroller extends Controller
     public function Agregar(Request $request){
         $response = Http::post(getenv('APP_REGISTRO_URL') . "venta" , [
          'id_producto' => $request->post('id_producto'),
-         'id_usuario' => $request->post('id_usuario')
+         'id_usuario' => $request->post('id_usuario'),
+         'stock' => $request->post('stock')
         ])-> json(); 
  
         if($response["resultado"] === "OK")
@@ -43,11 +44,13 @@ class Ventacontroller extends Controller
          $response = Http::post(getenv('APP_REGISTRO_URL') . "venta" , [
              'id' => $request->post('id'),
              'id_usuario' => $request->post('id_usuario'),
-             'id_producto' => $request->post('id_producto')
+             'id_producto' => $request->post('id_producto'),
+             'stock' => $request->post('stock')
+
          ])-> json(); 
   
          if($response["resultado"] === "OK")
-             return view('formAgregarVenta' , ["exitoModificar" => true]);
+             return view('formModificarVenta' , ["exito" => true]);
     }
     public function ModificarForm(Request $request){
      return view('formAgregarVenta',['ventas' => '']);

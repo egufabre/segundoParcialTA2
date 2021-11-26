@@ -52,9 +52,11 @@ Route::get('/Listar/{d}', [VentaController::class,"ListarUno"]);
 
 Route::post('/agregarVenta', [VentaController::class,"Agregar"]);
 Route::post('/modificarVenta', [VentaController::class,"Modificar"]);
-Route::get('/modificarVenta', [VentaController::class,"ModificarForm"]);
 Route::get('/agregarVenta', function () {
     return view('formAgregarVenta');
+});
+Route::get('/modificarVenta', function () {
+    return view('formModificarVenta');
 });
 Route::post('/eliminarVenta', [VentaController::class,"Eliminar"]);
 Route::get('/eliminarVenta', function () {

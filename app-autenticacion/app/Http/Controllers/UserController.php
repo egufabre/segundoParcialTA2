@@ -28,35 +28,76 @@ class UserController extends Controller
             return $respuesta;
     }
 
-    public function Login(Request $request) {
-
-        $request->validate([
-            'email' => ['required', 'email'],
-            'password'=> ['required']
-
+    public function registro(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|min:3',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
         ]);
-        $user= User::Where ('email', $request->email)->first();
 
-        if (!isset($user)){
-            throw ValidationException::withMessages([
-                'email' => ['Tus datos son incorrectos'],
+ 
 
-            ]);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password)
+        ]);
+
+        $token = $user->createToken('AuthToken')->accessToken;
+
+        return response()->json(['token' => $token], 200);
+
+    }
+    public function login(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|max:255',
+            'password' => 'required'
+        ]);
+
+        $login = $request->only('email', 'password');
+
+        if (!Auth::attempt($login)) {
+            return response(['message' => 'Invalid login credential!!'], 401);
         }
-        $user->createToken('Auth Token')->accessToken;
-        return $user;
+        /**
+         * @var User $user
+         */
+        $user = Auth::user();
+        $token = $user->createToken($user->name);
+
+        return response([
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'created_at' => $user->created_at,
+            'updated_at' => $user->updated_at,
+            'token' => $token->accessToken,
+            'token_expires_at' => $token->token->expires_at,
+        ], 200);
     }
 
+    public function logout(Request $request)
+    {
+        $this->validate($request, [
+            'allDevice' => 'required'
+        ]);
 
-    public function autenticar(Request $request){
-        $credentials = $request->only('email', 'password');
+        /**
+         * @var user $user
+         */
+        $user = Auth::user();
+        if ($request->allDevice) {
+            $user->tokens->each(function ($token) {
+                $token->delete();
+            });
+            return response(['message' => 'Logged out from all device !!'], 200);
+        }
 
-        if (Auth::attempt($credentials)) {
-            return view('login', ['autenticado' => "true"]);
-        }
-        else{
-            return view('login',['error' => "true"]);
-        }
+        $userToken = $user->token();
+        $userToken->delete();
+        return response(['message' => 'Logged Successful !!'], 200);
     }
 
 }
