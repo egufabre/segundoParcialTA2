@@ -5,6 +5,7 @@ php artisan passport:install
 
 EN App\Models\NombreModelo
 AGREGAR: HasApiTokens
+
 use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
@@ -12,6 +13,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 }
 EN App\Providers\AuthServiceProvider
+
 AGREGAR: Passport::routes();
 public function boot()
     {
@@ -22,6 +24,7 @@ public function boot()
         }
     }
 EN Config/auth.php  
+
 CAMBIAR: token por passport
 'guards' => [
     'web' => [
@@ -36,6 +39,7 @@ CAMBIAR: token por passport
 ],  
 
 En .ENV colocar 
+
 PASSPORT_PERSONAL_ACCESS_CLIENT_ID=
 PASSPORT_PERSONAL_ACCESS_CLIENT_SECRET=
 Con los campos que te da corriendo: php artisan passport:client
