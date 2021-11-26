@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +16,18 @@ use App\Http\Controllers\UserController;
 |
 */
 
-//Route::middleware('auth:passport')->get('/user', function (Request $request) {
- //   return $request->user();
-//});
-
+Route::middleware('auth:passport')->get('/user', function (Request $request) {
+   return $request->user();
+});
+Route::get('users', function(){
+    return User::all();
+});
+Route::group(['namespace'=>'Api\Auth'], function(){
 Route::post('/registro', [UserController::class,'registro']);
+Route::post('/logout', [UserController::class,'logout'])->middleware('auth:api');;
 Route::post('/login', [UserController::class,'login']);
 Route::post('/autenticar', [UserController::class,'autenticar']);
 Route::post('/crearUsuario', [UserController::class,'crearUser']);
-
+});
 
 
