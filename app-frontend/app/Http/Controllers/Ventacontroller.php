@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class Ventacontroller extends Controller
 {
     public function Listar(Request $request){
-        $ventas = Http::get(getenv('APP_REGISTRO_URL') . "listar")->json();
+        $ventas = Http::get(getenv('APP_REGISTRO_URL') . "venta")->json();
         return View('listarVenta',["ventas" => $ventas]);
  
     }
